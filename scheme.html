@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Keyboard Scheme</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Iosevka/11.1.1/iosevka/iosevka.min.css" integrity="sha512-3hU20586NsplKRzjf2jQN5vTRTI2EsXObrHDOBLGdkiRkneg699BlmBXWGHHFHADCF3TOk2BREsVy7qTkmvQqQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<style>
+			body {
+				font-family: "Iosevka", monospace;
+				letter-spacing: -1px;
+			}
+			.key-shell {
+				position: absolute;
+				width: 100px;
+				height: 100px;
+				border: 1px solid black;
+				background-color: #eee;
+				border-radius: 10px;
+			}
+			.key-face {
+				position: absolute;
+				width: 82px;
+				height: 82px;
+				top: 3px;
+  			left: 10px;
+				background-color: white;
+  			border-radius: 8px;
+			}
+			.alpha-layer {
+				position: absolute;
+				color: black;
+				font-size: 20px;
+				top: 5px;
+				left: 5px;
+			}
+			.nav-layer {
+				position: absolute;
+				color: blue;
+				font-size: 20px;
+				bottom: 5px;
+				left: 5px;
+			}
+			.symbol-layer {
+				position: absolute;
+				color: green;
+				font-size: 20px;
+				top: 5px;
+				right: 5px;
+			}
+			.hold-behavior {
+				position: absolute;
+				color: black;
+				font-size: 14px;
+				bottom: -2px;
+				left: 50%;
+				transform: translateX(-50%);
+			}
+		</style>
+	</head>
+	<body>
+		<div id="template" class="key-shell">
+			<div>
+				<div class="key-face">
+					<div class="alpha-layer">R</div>
+					<div class="nav-layer">~</div>
+					<div class="symbol-layer">4</div>
+				</div>
+				<div class="hold-behavior">ALT</div>
+			</div>
+		</div>
+		<script>
+			const keys = [
+				{
+					top: 70,
+					left: 10,
+					alpha: 'Q',
+					nav: '',
+					symbol: '*',
+					hold: '',
+				},
+				{
+					top: 180,
+					left: 10,
+					alpha: 'A',
+					nav: '^',
+					symbol: '0',
+					hold: '',
+				},
+				{
+					top: 290,
+					left: 10,
+					alpha: 'Z',
+					nav: '',
+					symbol: '=',
+					hold: '',
+				},
+				{
+					top: 40,
+					left: 120,
+					alpha: 'W',
+					nav: '',
+					symbol: '7',
+					hold: '',
+				},
+				{
+					top: 150,
+					left: 120,
+					alpha: 'R',
+					nav: '~',
+					symbol: '4',
+					hold: '',
+				},
+				{
+					top: 260,
+					left: 120,
+					alpha: 'X',
+					nav: '',
+					symbol: '1',
+					hold: 'ALT',
+				},
+				{
+					top: 20,
+					left: 230,
+					alpha: 'F',
+					nav: '',
+					symbol: '8',
+					hold: '',
+				},
+				{
+					top: 130,
+					left: 230,
+					alpha: 'S',
+					nav: '`',
+					symbol: '5',
+					hold: '',
+				},
+				{
+					top: 240,
+					left: 230,
+					alpha: 'C',
+					nav: '',
+					symbol: '2',
+					hold: 'CTRL',
+				},
+				{
+					top: 40,
+					left: 340,
+					alpha: 'P',
+					nav: '',
+					symbol: '9',
+					hold: '',
+				},
+				{
+					top: 150,
+					left: 340,
+					alpha: 'T',
+					nav: '\'',
+					symbol: '6',
+					hold: '',
+				},
+				{
+					top: 260,
+					left: 340,
+					alpha: 'D',
+					nav: '',
+					symbol: '3',
+					hold: 'META',
+				},
+				{
+					top: 40,
+					left: 450,
+					alpha: 'B',
+					nav: 'CAPS',
+					symbol: '/',
+					hold: '',
+				},
+				{
+					top: 150,
+					left: 450,
+					alpha: 'G',
+					nav: '"',
+					symbol: '-',
+					hold: '',
+				},
+				{
+					top: 260,
+					left: 450,
+					alpha: 'V',
+					nav: '',
+					symbol: '+',
+					hold: '',
+				},
+				{
+					top: 380,
+					left: 300,
+					alpha: 'TAB',
+					nav: '',
+					symbol: '',
+					hold: '',
+				},
+				{
+					top: 400,
+					left: 410,
+					alpha: 'ESC',
+					nav: '',
+					symbol: '',
+					hold: 'SHIFT',
+				},
+				{
+					top: 420,
+					left: 520,
+					alpha: 'SPACE',
+					nav: '',
+					symbol: '',
+					hold: '<span style="color: blue;">NAV</span>',
+				},
+				{
+					top: 70,
+					left: 1190,
+					alpha: ';',
+					nav: 'INS',
+					symbol: '\\',
+					hold: '',
+				},
+				{
+					top: 180,
+					left: 1190,
+					alpha: 'O',
+					nav: '<span class="fa fa-caret-right" />',
+					symbol: '|',
+					hold: '',
+				},
+				{
+					top: 290,
+					left: 1190,
+					alpha: '?',
+					nav: 'END',
+					symbol: '!',
+					hold: '',
+				},
+				{
+					top: 40,
+					left: 1080,
+					alpha: 'Y',
+					nav: '<span class="fa fa-volume-high" />',
+					symbol: '$',
+					hold: '',
+				},
+				{
+					top: 150,
+					left: 1080,
+					alpha: 'I',
+					nav: '<span class="fa fa-caret-up" />',
+					symbol: '&',
+					hold: '',
+				},
+				{
+					top: 260,
+					left: 1080,
+					alpha: '.',
+					nav: 'PGUP',
+					symbol: '#',
+					hold: 'ALT',
+				},
+				{
+					top: 20,
+					left: 970,
+					alpha: 'U',
+					nav: '<span class="fa fa-volume-low" />',
+					symbol: '}',
+					hold: '',
+				},
+				{
+					top: 130,
+					left: 970,
+					alpha: 'E',
+					nav: '<span class="fa fa-caret-down" />',
+					symbol: ')',
+					hold: '',
+				},
+				{
+					top: 240,
+					left: 970,
+					alpha: ',',
+					nav: 'PGDN',
+					symbol: ']',
+					hold: 'CTRL',
+				},
+				{
+					top: 40,
+					left: 860,
+					alpha: 'L',
+					nav: '<span class="fa fa-volume-xmark" />',
+					symbol: '{',
+					hold: '',
+				},
+				{
+					top: 150,
+					left: 860,
+					alpha: 'N',
+					nav: '<span class="fa fa-caret-left" />',
+					symbol: '(',
+					hold: '',
+				},
+				{
+					top: 260,
+					left: 860,
+					alpha: 'H',
+					nav: 'HOME',
+					symbol: '[',
+					hold: 'META',
+				},
+				{
+					top: 40,
+					left: 750,
+					alpha: 'J',
+					nav: '<span class="fa fa-backward" />',
+					symbol: '@',
+					hold: '',
+				},
+				{
+					top: 150,
+					left: 750,
+					alpha: 'M',
+					nav: '<span class="fa fa-play" /><span class="fa fa-pause" />',
+					symbol: '_',
+					hold: '',
+				},
+				{
+					top: 260,
+					left: 750,
+					alpha: 'K',
+					nav: '<span class="fa fa-forward" />',
+					symbol: '%',
+					hold: '',
+				},
+				{
+					top: 380,
+					left: 900,
+					alpha: 'DEL',
+					nav: '',
+					symbol: '',
+					hold: '',
+				},
+				{
+					top: 400,
+					left: 790,
+					alpha: 'ENTER',
+					nav: '',
+					symbol: '',
+					hold: '',
+				},
+				{
+					top: 420,
+					left: 680,
+					alpha: '<span class="fa fa-delete-left" />',
+					nav: '',
+					symbol: '',
+					hold: '<span style="color: green;">SYM</span>',
+				},
+
+			];
+
+			const template = document.getElementById("template");
+
+			for (const k of keys) {
+				const key = template.cloneNode(true);
+				key.style = `top: ${k.top}px; left: ${k.left}px;`;
+				key.getElementsByClassName("alpha-layer")[0].innerHTML = k.alpha;
+				key.getElementsByClassName("nav-layer")[0].innerHTML = k.nav;
+				key.getElementsByClassName("symbol-layer")[0].innerHTML = k.symbol;
+				key.getElementsByClassName("hold-behavior")[0].innerHTML = k.hold;
+				template.after(key);
+			}
+
+			template.remove();
+		</script>
+	</body>
+</html>
