@@ -6,24 +6,10 @@
     quick-tap-ms = <100>;
     global-quick-tap;
     flavor = "tap-preferred";
-    tapping-term-ms = <170>;
+    tapping-term-ms = <200>;
 };
 
 / {
-    combos {
-        compatible = "zmk,combos";
-
-        layer2 {
-            bindings = <&to 1>;
-            key-positions = <20 34>;
-        };
-
-        layer3 {
-            bindings = <&to 2>;
-            key-positions = <35 31>;
-        };
-    };
-
     behaviors {
         qmark: qmark {
             compatible = "zmk,behavior-mod-morph";
@@ -33,6 +19,15 @@
             #binding-cells = <0>;
             mods = <(MOD_LSFT)>;
         };
+
+        ht: holdtap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick_tap_ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
     };
 
     keymap {
@@ -40,28 +35,37 @@
 
         alpha {
             bindings = <
-       &kp Q  &kp W       &kp F        &kp P          &kp B          &kp J       &kp L       &kp U            &kp Y         &kp SEMI
-       &kp A  &kp R       &kp S        &kp T          &kp G          &kp M       &kp N       &kp E            &kp I         &kp O
-&none  &kp Z  &mt LALT X  &mt LCTRL C  &mt LGUI D     &kp V          &kp K       &mt RGUI H  &mt RCTRL COMMA  &mt RALT DOT  &qmark    &none
-                          &kp TAB      &mt LSHFT ESC  &lt 1 SPACE    &lt 2 BSPC  &kp RET     &kp DEL
+       &kp Q  &kp W  &kp F         &kp P          &kp B          &kp J       &kp L          &kp U         &kp Y    &kp SEMI
+       &kp A  &kp R  &kp S         &kp T          &kp G          &kp M       &kp N          &kp E         &kp I    &kp O
+&none  &kp Z  &kp X  &kp C         &kp D          &kp V          &kp K       &kp H          &kp COMMA     &kp DOT  &qmark    &none
+                     &ht LGUI TAB  &ht LSHFT ESC  &lt 1 SPACE    &lt 2 BSPC  &ht LCTRL RET  &ht LALT DEL
             >;
         };
 
         navigation {
             bindings = <
-       &none      &none      &none       &none       &kp CAPS     &kp C_PREV        &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP  &kp INS
-       &kp CARET  &kp TILDE  &kp GRAVE   &kp SQT     &kp DQT      &kp C_PLAY_PAUSE  &kp LEFT    &kp DOWN      &kp UP        &kp RIGHT
-&to 0  &none      &none      &none       &none       &none        &kp C_NEXT        &kp HOME    &kp PG_DN     &kp PG_UP     &kp END    &to 0
-                             &bt BT_NXT  &bt BT_CLR  &kp SPACE    &kp LA(BSPC)      &kp RET     &kp DEL
+       &none       &none         &none         &none          &none           &kp C_PREV        &kp C_MUTE    &kp C_VOL_DN  &kp C_VOL_UP  &kp CAPS
+       &kp CARET   &kp TILDE     &kp GRAVE     &kp SQT        &kp DQT         &kp C_PLAY_PAUSE  &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT
+&none  &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2   &bt BT_SEL 3    &kp C_NEXT        &kp HOME      &kp PG_DN     &kp PG_UP     &kp END    &none
+                                 &ht LGUI TAB  &ht LSHFT ESC  &none           &lt 3 LA(BSPC)    &kp LA(RET)   &kp LA(DEL)
             >;
         };
 
         symbol {
             bindings = <
-       &kp ASTRK  &kp N7  &kp N8   &kp N9         &kp FSLH     &kp AT     &kp LBRC   &kp RBRC  &kp DLLR  &kp BSLH
-       &kp N0     &kp N4  &kp N5   &kp N6         &kp MINUS    &kp UNDER  &kp LPAR   &kp RPAR  &kp AMPS  &kp PIPE
-&to 0  &kp EQUAL  &kp N1  &kp N2   &kp N3         &kp PLUS     &kp PRCNT  &kp LBKT   &kp RBKT  &kp HASH  &kp EXCL  &to 0
-                          &kp TAB  &mt LSHFT ESC  &kp SPACE    &kp BSPC   &kp ENTER  &kp DEL
+       &kp ASTRK  &kp N7  &kp N8       &kp N9       &kp FSLH       &kp AT     &kp LBRC      &kp RBRC      &kp DLLR  &kp BSLH
+       &kp N0     &kp N4  &kp N5       &kp N6       &kp MINUS      &kp UNDER  &kp LPAR      &kp RPAR      &kp AMPS  &kp PIPE
+&none  &kp EQUAL  &kp N1  &kp N2       &kp N3       &kp PLUS       &kp PRCNT  &kp LBKT      &kp RBKT      &kp HASH  &kp EXCL  &none
+                          &kp LS(TAB)  &kp LS(ESC)  &lt 3 SPACE    &none      &ht LGUI RET  &ht LALT DEL
+            >;
+        };
+
+        function {
+            bindings = <
+       &none      &kp KP_N7  &kp KP_N8  &kp KP_N9  &none    &none  &kp F9  &kp F10  &kp F11  &kp F12    
+       &kp KP_N0  &kp KP_N4  &kp KP_N5  &kp KP_N6  &none    &none  &kp F5  &kp F6   &kp F7   &kp F8
+&none  &none      &kp KP_N1  &kp KP_N2  &kp KP_N3  &none    &none  &kp F1  &kp F2   &kp F3   &kp F4   &none
+                             &none      &none      &none    &none  &none   &none
             >;
         };
     };
