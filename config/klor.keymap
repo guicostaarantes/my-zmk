@@ -37,10 +37,10 @@
 
         navigation {
             bindings = <
-       &none       &none         &none         &none          &none                         &kp C_PREV        &kp C_MUTE    &kp C_VOL_DN  &kp C_VOL_UP  &kp CAPS
-&none  &kp CARET   &kp TILDE     &kp GRAVE     &kp SQT        &kp DQT                       &kp C_PLAY_PAUSE  &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT  &none
-&none  &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2   &bt BT_SEL 3  &none    &none  &kp C_NEXT        &kp HOME      &kp PG_DN     &kp PG_UP     &kp END    &none
-                                 &ht LGUI TAB  &ht LSHFT ESC  &none         &none    &none  &lt 3 LA(BSPC)    &kp LA(RET)   &kp LA(DEL)
+       &bt BT_CLR    &none         &none         &none          &none                         &kp C_PREV        &kp C_MUTE    &kp C_VOL_DN  &kp C_VOL_UP  &kp CAPS
+&none  &kp CARET     &kp TILDE     &kp GRAVE     &kp SQT        &kp DQT                       &kp C_PLAY_PAUSE  &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT  &none
+&none  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3   &bt BT_SEL 4  &none    &none  &kp C_NEXT        &kp HOME      &kp PG_DN     &kp PG_UP     &kp END    &none
+                                   &ht LGUI TAB  &ht LSHFT ESC  &none         &none    &none  &lt 3 LA(BSPC)    &kp LA(RET)   &kp LA(DEL)
             >;
         };
 
