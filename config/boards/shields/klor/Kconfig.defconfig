@@ -1,7 +1,7 @@
 if SHIELD_KLOR_LEFT
 
     config ZMK_KEYBOARD_NAME
-        default "KLOR5"
+        default "KLOR7"
 
     config ZMK_SPLIT_BLE_ROLE_CENTRAL
         default y
